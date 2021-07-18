@@ -5,6 +5,7 @@ import com.github.anjeyy.adventcode.three.TreeMapParser.Slope;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class Main {
 
@@ -20,26 +21,17 @@ class Main {
     }
 
     private static void solvePartOne() throws IOException {
-        TreeMapParser treeMapParser =
-            AdventFileReader.readInputAsStringList("three_tree-map.txt")
-                            .stream()
-                            .filter(AdventFileReader.stringIsNotBlank())
-                            .map(String::trim)
-                            .collect(Collectors.collectingAndThen(
-                                Collectors.toUnmodifiableList(),
-                                l -> TreeMapParser.fromAndSlop(l, Slope.fromRightAndDown(3, 1))
-                            ));
+        TreeMapParser treeMapParser = readInput()
+            .collect(Collectors.collectingAndThen(
+                Collectors.toUnmodifiableList(),
+                l -> TreeMapParser.fromAndSlop(l, Slope.fromRightAndDown(3, 1))
+            ));
 
         System.out.println("Part I: " + treeMapParser.countTrees());
     }
 
     private static void solvePartTwo() throws IOException {
-        List<String> mapLines =
-            AdventFileReader.readInputAsStringList("three_tree-map.txt")
-                            .stream()
-                            .filter(AdventFileReader.stringIsNotBlank())
-                            .map(String::trim)
-                            .collect(Collectors.toList());
+        List<String> mapLines = readInput().collect(Collectors.toList());
 
         TreeMapParser treeMapParser1 = TreeMapParser.fromAndSlop(mapLines, Slope.fromRightAndDown(1, 1));
         TreeMapParser treeMapParser2 = TreeMapParser.fromAndSlop(mapLines, Slope.fromRightAndDown(3, 1));
@@ -51,6 +43,14 @@ class Main {
             treeMapParser3.countTrees() *
             treeMapParser4.countTrees() *
             treeMapParser5.countTrees();
-        System.out.println("Part I: " + result);
+
+        System.out.println("Part II: " + result);
+    }
+
+    private static Stream<String> readInput() throws IOException {
+        return AdventFileReader.readInputAsStringList("three_tree-map.txt")
+                               .stream()
+                               .filter(AdventFileReader.stringIsNotBlank())
+                               .map(String::trim);
     }
 }

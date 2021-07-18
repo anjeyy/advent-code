@@ -21,12 +21,15 @@ class TreeMapParser {
     int countTrees() {
         int counter = 0;
         int position = 0;
-        for (String line : mapLines) {
+
+        for (int i = 0; i < mapLines.size(); i = i + slope.down) {
+            final String line = mapLines.get(i);
             if (isTree(position, line)) {
                 counter++;
             }
             position = stepThrough(position, line);
         }
+
         return counter;
     }
 
@@ -35,7 +38,7 @@ class TreeMapParser {
     }
 
     private int stepThrough(int position, String line) {
-        position = position + 3;
+        position = position + slope.right;
         if (position >= line.length()) {
             position = position - line.length(); // reset to the left
         }
