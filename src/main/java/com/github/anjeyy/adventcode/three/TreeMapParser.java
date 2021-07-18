@@ -7,13 +7,15 @@ class TreeMapParser {
     private static final char TREE = '#';
 
     private final List<String> mapLines;
+    private final Slope slope;
 
-    private TreeMapParser(List<String> mapLines) {
+    private TreeMapParser(List<String> mapLines, Slope slope) {
         this.mapLines = mapLines;
+        this.slope = slope;
     }
 
-    static TreeMapParser from(List<String> mapLines) {
-        return new TreeMapParser(mapLines);
+    static TreeMapParser fromAndSlop(List<String> mapLines, Slope slope) {
+        return new TreeMapParser(mapLines, slope);
     }
 
     int countTrees() {
@@ -38,6 +40,21 @@ class TreeMapParser {
             position = position - line.length(); // reset to the left
         }
         return position;
+    }
+
+    static class Slope {
+
+        private final int right;
+        private final int down;
+
+        private Slope(int right, int down) {
+            this.right = right;
+            this.down = down;
+        }
+
+        static Slope fromRightAndDown(int right, int down) {
+            return new Slope(right, down);
+        }
     }
 
 }
