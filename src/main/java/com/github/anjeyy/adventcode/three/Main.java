@@ -1,6 +1,8 @@
 package com.github.anjeyy.adventcode.three;
 
+import com.github.anjeyy.adventcode.AdventFileReader;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 class Main {
 
@@ -8,7 +10,7 @@ class Main {
         throw new UnsupportedOperationException("No instance allowed");
     }
 
-    static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 
         solvePartOne();
 
@@ -16,7 +18,17 @@ class Main {
     }
 
     private static void solvePartOne() throws IOException {
-        //todo
+        TreeMapParser treeMapParser =
+            AdventFileReader.readInputAsStringList("three_tree-map.txt")
+                            .stream()
+                            .filter(AdventFileReader.stringIsNotBlank())
+                            .map(String::trim)
+                            .collect(Collectors.collectingAndThen(
+                                Collectors.toUnmodifiableList(),
+                                TreeMapParser::from
+                            ));
+
+        System.out.println("Part I: " + treeMapParser.countTrees());
     }
 
     private static void solvePartTwo() throws IOException {

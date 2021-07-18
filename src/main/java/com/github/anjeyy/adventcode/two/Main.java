@@ -7,7 +7,11 @@ class Main {
 
     static final String WHITESPACE = " ";
 
-    static void main(String[] args) throws IOException {
+    private Main() {
+        throw new UnsupportedOperationException("No instance allowed");
+    }
+
+    public static void main(String[] args) throws IOException {
 
         solvePartOne();
 
