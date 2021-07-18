@@ -1,5 +1,7 @@
 package com.github.anjeyy.adventcode.two;
 
+import com.github.anjeyy.adventcode.Constants;
+
 class Password {
 
     private final String phrase;
@@ -17,7 +19,7 @@ class Password {
     }
 
     private String extractPasswordPhrase(String phrase) {
-        return phrase.split(Main.WHITESPACE)[2];
+        return phrase.split(Constants.WHITESPACE)[2];
     }
 
     @Override

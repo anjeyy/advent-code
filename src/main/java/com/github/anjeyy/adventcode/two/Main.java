@@ -5,8 +5,6 @@ import java.io.IOException;
 
 class Main {
 
-    static final String WHITESPACE = " ";
-
     private Main() {
         throw new UnsupportedOperationException("No instance allowed");
     }

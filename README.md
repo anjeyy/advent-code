@@ -22,7 +22,7 @@ Solved puzzle.
 
 - https://adventofcode.com/2020/day/3
 
-## Day 3: Toboggan Trajectory
+## Day 4: Passport Processing
 
 Solved puzzle.
 
