@@ -20,6 +20,28 @@ class Main {
     }
 
     private static void solvePartOne() throws IOException {
+        List<String> rawPassports = prepareInputData();
+
+        long validPassports = rawPassports.stream()
+                                          .map(String::trim)
+                                          .map(Passport::from)
+                                          .filter(Passport::isValidPartOne)
+                                          .count();
+        System.out.println("Part I: " + validPassports);
+    }
+
+    private static void solvePartTwo() throws IOException {
+        List<String> rawPassports = prepareInputData();
+
+        long validPassports = rawPassports.stream()
+                                          .map(String::trim)
+                                          .map(Passport::from)
+                                          .filter(Passport::isValidPartTwo)
+                                          .count();
+        System.out.println("Part II: " + validPassports);
+    }
+
+    private static List<String> prepareInputData() throws IOException {
         List<String> passportLines = AdventFileReader.readInputAsStringList("four_passport-list.txt");
 
         StringBuilder tmp = new StringBuilder(Constants.EMPTY);
@@ -32,18 +54,7 @@ class Main {
                 tmp = new StringBuilder(Constants.EMPTY);
             }
         }
-        long validPassports = rawPassports.stream()
-                                          .map(String::trim)
-                                          .map(Passport::from)
-                                          .filter(Passport::isValid)
-                                          .count();
-        System.out.println("Part I: " + validPassports);
-        rawPassports.stream().forEach(System.out::println);
-        System.out.println("## " + rawPassports.size());
-    }
-
-    private static void solvePartTwo() throws IOException {
-
-//        System.out.println("Part II: " + result);
+        rawPassports.add(tmp.toString());  // add the last concatenated line
+        return rawPassports;
     }
 }
