@@ -15,3 +15,15 @@ Please have a look yourself, and I encourage you to solve listed puzzles on your
 Solved puzzle.
 
 - https://adventofcode.com/2020/day/2
+
+## Day 3: Toboggan Trajectory
+
+Solved puzzle.
+
+- https://adventofcode.com/2020/day/3
+
+## Day 3: Toboggan Trajectory
+
+Solved puzzle.
+
+- https://adventofcode.com/2020/day/4
