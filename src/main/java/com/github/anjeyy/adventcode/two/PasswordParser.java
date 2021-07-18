@@ -14,7 +14,13 @@ class PasswordParser {
         return new PasswordParser(phrase);
     }
 
-    boolean isValid() {
+    /**
+     * Password policy from the <b>first</b> part of puzzle <i>Day 2: Password Philosophy</i>.
+     *
+     * @return valid passwords according to the first part of the puzzle
+     * @see <a href="https://adventofcode.com/2020/day/2">Day 2: Password Philosophy - Part I</a>
+     */
+    boolean isValidPartOne() {
         final String passwordAsString = password.getPhrase();
         final char mandatoryChar = passwordPolicy.getMandatoryCharacter();
         int occurrence = 0;
@@ -26,5 +32,25 @@ class PasswordParser {
             }
         }
         return passwordPolicy.getMinOccurrence() <= occurrence && occurrence <= passwordPolicy.getMaxOccurrence();
+    }
+
+    /**
+     * Password policy from the <b>second</b> part of puzzle <i>Day 2: Password Philosophy</i>.
+     *
+     * @return valid passwords according to the first part of the puzzle
+     * @see <a href="https://adventofcode.com/2020/day/2#part2">Day 2: Password Philosophy - Part II</a>
+     */
+    boolean isValidPartTwo() {
+        final String passwordAsString = password.getPhrase();
+        final char mandatoryChar = passwordPolicy.getMandatoryCharacter();
+        final int minOccurrence = passwordPolicy.getMinOccurrence();
+        final int maxOccurrence = passwordPolicy.getMaxOccurrence();
+
+        boolean matchingFirstPosition =
+            minOccurrence >= 0 && passwordAsString.charAt(minOccurrence - 1) == mandatoryChar;
+        boolean matchingSecondPosition =
+            maxOccurrence <= passwordAsString.length() &&
+                passwordAsString.charAt(maxOccurrence - 1) == mandatoryChar;
+        return matchingFirstPosition ^ matchingSecondPosition;
     }
 }
