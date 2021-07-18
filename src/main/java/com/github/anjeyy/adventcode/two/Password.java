@@ -8,7 +8,7 @@ class Password {
         this.phrase = extractPasswordPhrase(phrase);
     }
 
-    public String getPhrase() {
+    String getPhrase() {
         return phrase;
     }
 

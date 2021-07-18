@@ -5,9 +5,9 @@ import java.io.IOException;
 
 class Main {
 
-    public static final String WHITESPACE = " ";
+    static final String WHITESPACE = " ";
 
-    public static void main(String[] args) throws IOException {
+    static void main(String[] args) throws IOException {
 
         solvePartOne();
 

@@ -18,15 +18,15 @@ class PasswordPolicy {
         this.mandatoryCharacter = extractMandatoryCharacter(policy);
     }
 
-    public int getMinOccurrence() {
+    int getMinOccurrence() {
         return minOccurrence;
     }
 
-    public int getMaxOccurrence() {
+    int getMaxOccurrence() {
         return maxOccurrence;
     }
 
-    public char getMandatoryCharacter() {
+    char getMandatoryCharacter() {
         return mandatoryCharacter;
     }
 
