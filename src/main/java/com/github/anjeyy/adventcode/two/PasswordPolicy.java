@@ -1,5 +1,7 @@
 package com.github.anjeyy.adventcode.two;
 
+import com.github.anjeyy.adventcode.Constants;
+
 class PasswordPolicy {
 
     private static final String MINUS = "-";
@@ -31,19 +33,19 @@ class PasswordPolicy {
     }
 
     private int extractMinOccurrence(String policy) {
-        String occurrence = policy.split(Main.WHITESPACE)[0];
+        String occurrence = policy.split(Constants.WHITESPACE)[0];
         String rawMinOccurrence = occurrence.split(MINUS)[0];
         return Integer.parseInt(rawMinOccurrence);
     }
 
     private int extractMaxOccurrence(String policy) {
-        String occurrence = policy.split(Main.WHITESPACE)[0];
+        String occurrence = policy.split(Constants.WHITESPACE)[0];
         String rawMaxOccurrence = occurrence.split(MINUS)[1];
         return Integer.parseInt(rawMaxOccurrence);
     }
 
     private char extractMandatoryCharacter(String policy) {
-        String rawMandatoryCharacter = policy.split(Main.WHITESPACE)[1];
+        String rawMandatoryCharacter = policy.split(Constants.WHITESPACE)[1];
         return rawMandatoryCharacter.charAt(0);
     }
 
