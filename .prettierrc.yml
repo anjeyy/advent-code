@@ -1,0 +1,25 @@
+# Prettier configuration
+overrides:
+  - files:
+      - "*.java"
+    options:
+      endOfLine: auto
+      printWidth: 120
+      tabWidth: 4
+      useTabs: false
+  - files:
+      - "*.md"
+    options:
+      endOfLine: auto
+      printWidth: 120
+      proseWrap: always
+      tabWidth: 2
+      useTabs: false
+  - files:
+      - "*.json"
+      - "*.yml"
+    options:
+      endOfLine: auto
+      printWidth: 120
+      tabWidth: 2
+      useTabs: false
