@@ -27,3 +27,9 @@ Solved puzzle.
 Solved puzzle.
 
 - https://adventofcode.com/2020/day/4
+
+## Day 5: Binary Boarding
+
+Solved puzzle.
+
+- https://adventofcode.com/2020/day/5
