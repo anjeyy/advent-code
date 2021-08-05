@@ -33,3 +33,9 @@ Solved puzzle.
 Solved puzzle.
 
 - https://adventofcode.com/2020/day/5
+
+## Day 6: Custom Customs
+
+Solved puzzle.
+
+- https://adventofcode.com/2020/day/6
