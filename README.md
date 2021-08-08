@@ -39,3 +39,9 @@ Solved puzzle.
 Solved puzzle.
 
 - https://adventofcode.com/2020/day/6
+
+## Day 7: Handy Haversacks
+
+Solved puzzle.
+
+- https://adventofcode.com/2020/day/7
