@@ -10,7 +10,6 @@ class LineParser {
     private static final String SOURCE_DESTINATION_SPLIT = "contain";
     private static final String DESTINATION_SPLIT = ",";
 
-
     private final String rawLine;
 
     static LineParser from(String rawLine) {
@@ -21,18 +20,15 @@ class LineParser {
         this.rawLine = rawLine;
     }
 
-    public static void main(String[] args) {
-        //todo
-        String input = "light red bags contain 1 bright white bag, 2 muted yellow bags.";
-        LineParser.from(input).parse();
-    }
-
-    void parse() {
+    void parse(Graph graph) {
         String source = extractSourceVertex();
         List<String> destinations = extractDestinationVertices();
 
-        //todo return Edge with Vertices
+        Node sourceNode = Node.from(source);
+        List<Node> destinationNodes = destinations.stream().map(Node::from).collect(Collectors.toList());
 
+        List<Edge> edges = destinationNodes.stream().map(d -> Edge.with(d, sourceNode)).collect(Collectors.toList());
+        edges.forEach(e -> graph.addNeighbor(e.getSource(), e));
     }
 
     private String extractSourceVertex() {
@@ -41,12 +37,14 @@ class LineParser {
     }
 
     private List<String> extractDestinationVertices() {
-        String rawDestination = sourceDestinationSplit()[1].trim()
-                                                           .replace(".", EMPTY)
-                                                           .replaceAll("\\d ", EMPTY);
+        String rawDestination = sourceDestinationSplit()[1].trim().replace(".", EMPTY).replaceAll("\\d ", EMPTY);
         String polishedDestinations = replaceBags(rawDestination);
         String[] rawDestinations = polishedDestinations.split(DESTINATION_SPLIT);
-        return Arrays.stream(rawDestinations).map(String::trim).collect(Collectors.toList());
+        return Arrays
+            .stream(rawDestinations)
+            .map(String::trim)
+            .filter(s -> !s.contains("no other")) // exclude 'faded blue bags contain no other bags.'
+            .collect(Collectors.toList());
     }
 
     private String[] sourceDestinationSplit() {
@@ -58,7 +56,6 @@ class LineParser {
     }
 
     private static String replaceBags(String value) {
-        return value.replace("bags", EMPTY)
-                    .replace("bag", EMPTY);
+        return value.replace("bags", EMPTY).replace("bag", EMPTY).trim();
     }
 }
