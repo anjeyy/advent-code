@@ -1,7 +1,10 @@
 package com.github.anjeyy.adventcode.seven;
 
+import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 class LineParser {
@@ -22,12 +25,13 @@ class LineParser {
 
     void parse(Graph graph) {
         String source = extractSourceVertex();
-        List<String> destinations = extractDestinationVertices();
+        List<Map.Entry<String, Integer>> destinations = extractDestinationVertices();
 
         Node sourceNode = Node.from(source);
-        List<Node> destinationNodes = destinations.stream().map(Node::from).collect(Collectors.toList());
-
-        List<Edge> edges = destinationNodes.stream().map(d -> Edge.with(d, sourceNode)).collect(Collectors.toList());
+        List<Edge> edges = destinations
+            .stream()
+            .map(d -> Edge.with(Node.from(d.getKey()), sourceNode, d.getValue()))
+            .collect(Collectors.toList());
         edges.forEach(e -> graph.addNeighbor(e.getSource(), e));
     }
 
@@ -36,14 +40,15 @@ class LineParser {
         return replaceBags(source);
     }
 
-    private List<String> extractDestinationVertices() {
-        String rawDestination = sourceDestinationSplit()[1].trim().replace(".", EMPTY).replaceAll("\\d ", EMPTY);
+    private List<Entry<String, Integer>> extractDestinationVertices() {
+        String rawDestination = sourceDestinationSplit()[1].trim().replace(".", EMPTY);
         String polishedDestinations = replaceBags(rawDestination);
         String[] rawDestinations = polishedDestinations.split(DESTINATION_SPLIT);
         return Arrays
             .stream(rawDestinations)
             .map(String::trim)
             .filter(s -> !s.contains("no other")) // exclude 'faded blue bags contain no other bags.'
+            .map(s -> new SimpleEntry<String, Integer>(s.substring(2), Integer.valueOf(s.substring(0, 1))))
             .collect(Collectors.toList());
     }
 

@@ -29,17 +29,15 @@ class Main {
     }
 
     private static void solvePartTwo() throws IOException {
-        //        int commonAnswered = Arrays
-        //            .stream(
-        //                AdventFileReader
-        //                    .readInputAsString("seven_regulation-list.txt")
-        //                    .split(System.lineSeparator() + System.lineSeparator())
-        //            )
-        //            .map(String::trim)
-        //            .map(CustomsGroup::from)
-        //            .map(CustomsGroup::commonQuestionAnswered)
-        //            .reduce(0, Integer::sum);
-        //
-        //        System.out.println("Part II: " + commonAnswered);
+        Graph graph = new Graph();
+        AdventFileReader
+            .readInputAsStringList("seven_regulation-list.txt")
+            .stream()
+            .map(String::trim)
+            .map(LineParser::from)
+            .forEach(lp -> lp.parse(graph));
+
+        Node shinyGold = Node.from("shiny gold");
+        System.out.println("Part II: " + graph.countRecursivelyFrom(shinyGold));
     }
 }

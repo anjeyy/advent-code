@@ -6,14 +6,16 @@ class Edge {
 
     private final Node source;
     private final Node destination;
+    private final int weight;
 
-    static Edge with(Node source, Node destination) {
-        return new Edge(source, destination);
+    static Edge with(Node source, Node destination, int weight) {
+        return new Edge(source, destination, weight);
     }
 
-    private Edge(Node source, Node destination) {
+    private Edge(Node source, Node destination, int weight) {
         this.source = source;
         this.destination = destination;
+        this.weight = weight;
     }
 
     Node getSource() {
@@ -22,6 +24,10 @@ class Edge {
 
     Node getDestination() {
         return destination;
+    }
+
+    int getWeight() {
+        return weight;
     }
 
     @Override
