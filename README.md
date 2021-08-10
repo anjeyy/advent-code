@@ -45,3 +45,9 @@ Solved puzzle.
 Solved puzzle.
 
 - https://adventofcode.com/2020/day/7
+
+## Day 8: Handheld Halting
+
+Solved puzzle.
+
+- https://adventofcode.com/2020/day/8
