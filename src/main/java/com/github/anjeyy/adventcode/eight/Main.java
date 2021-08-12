@@ -26,7 +26,9 @@ class Main {
             .map(InstructionParser::from)
             .collect(Collectors.toList());
 
-        instructions.forEach(System.out::println);
+        Assembler assembler = Assembler.from(instructions);
+
+        System.out.println(assembler.execute());
 //
 //        System.out.println("Part I: " + graph.countNodesFrom(shinyGold));
     }
