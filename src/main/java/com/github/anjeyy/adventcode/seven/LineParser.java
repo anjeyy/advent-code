@@ -1,5 +1,6 @@
 package com.github.anjeyy.adventcode.seven;
 
+import com.github.anjeyy.adventcode.Constants;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +10,6 @@ import java.util.stream.Collectors;
 
 class LineParser {
 
-    private static final String EMPTY = "";
     private static final String SOURCE_DESTINATION_SPLIT = "contain";
     private static final String DESTINATION_SPLIT = ",";
 
@@ -41,7 +41,7 @@ class LineParser {
     }
 
     private List<Entry<String, Integer>> extractDestinationVertices() {
-        String rawDestination = sourceDestinationSplit()[1].trim().replace(".", EMPTY);
+        String rawDestination = sourceDestinationSplit()[1].trim().replace(".", Constants.EMPTY);
         String polishedDestinations = replaceBags(rawDestination);
         String[] rawDestinations = polishedDestinations.split(DESTINATION_SPLIT);
         return Arrays
@@ -61,6 +61,6 @@ class LineParser {
     }
 
     private static String replaceBags(String value) {
-        return value.replace("bags", EMPTY).replace("bag", EMPTY).trim();
+        return value.replace("bags", Constants.EMPTY).replace("bag", Constants.EMPTY).trim();
     }
 }

@@ -1,5 +1,7 @@
 package com.github.anjeyy.adventcode.eight;
 
+import com.github.anjeyy.adventcode.Constants;
+
 class InstructionParser {
 
     private InstructionParser() {
@@ -7,9 +9,9 @@ class InstructionParser {
     }
 
     static Instruction from(String instructionLine) {
-        String[] instructions = instructionLine.trim().split(" ");
+        String[] instructions = instructionLine.trim().split(Constants.WHITESPACE);
         if (instructions.length != 2) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("Provide correct line input.");
         }
         Operation operation = Operation.from(instructions[0]);
         int argument = Integer.parseInt(instructions[1]);

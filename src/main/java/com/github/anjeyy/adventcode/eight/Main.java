@@ -13,25 +13,22 @@ class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        //        solvePartOne();
+        solvePartOne();
 
         solvePartTwo();
     }
 
     private static void solvePartOne() throws IOException {
-        List<Instruction> instructions = AdventFileReader
-            .readInputAsStringList("eight_instruction-list.txt")
-            .stream()
-            .map(String::trim)
-            .map(InstructionParser::from)
-            .collect(Collectors.toList());
-
-        Assembler assembler = Assembler.from(instructions);
-
+        Assembler assembler = prepareData();
         System.out.println("Part I: " + assembler.execute());
     }
 
     private static void solvePartTwo() throws IOException {
+        Assembler assembler = prepareData();
+        System.out.println("Part II: " + assembler.fixLoophole());
+    }
+
+    private static Assembler prepareData() throws IOException {
         List<Instruction> instructions = AdventFileReader
             .readInputAsStringList("eight_instruction-list.txt")
             .stream()
@@ -39,8 +36,6 @@ class Main {
             .map(InstructionParser::from)
             .collect(Collectors.toList());
 
-        Assembler assembler = Assembler.from(instructions);
-
-        System.out.println("Part II: " + assembler.fixLoophole());
+        return Assembler.from(instructions);
     }
 }
