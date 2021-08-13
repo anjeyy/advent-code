@@ -13,7 +13,7 @@ class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        solvePartOne();
+        //        solvePartOne();
 
         solvePartTwo();
     }
@@ -28,21 +28,19 @@ class Main {
 
         Assembler assembler = Assembler.from(instructions);
 
-        System.out.println(assembler.execute());
-//
-//        System.out.println("Part I: " + graph.countNodesFrom(shinyGold));
+        System.out.println("Part I: " + assembler.execute());
     }
 
     private static void solvePartTwo() throws IOException {
-//        Graph graph = new Graph();
-//        AdventFileReader
-//            .readInputAsStringList("seven_regulation-list.txt")
-//            .stream()
-//            .map(String::trim)
-//            .map(LineParser::from)
-//            .forEach(lp -> lp.parse(graph));
-//
-//        Node shinyGold = Node.from("shiny gold");
-//        System.out.println("Part II: " + graph.countRecursivelyFrom(shinyGold));
+        List<Instruction> instructions = AdventFileReader
+            .readInputAsStringList("eight_instruction-list.txt")
+            .stream()
+            .map(String::trim)
+            .map(InstructionParser::from)
+            .collect(Collectors.toList());
+
+        Assembler assembler = Assembler.from(instructions);
+
+        System.out.println("Part II: " + assembler.fixLoophole());
     }
 }

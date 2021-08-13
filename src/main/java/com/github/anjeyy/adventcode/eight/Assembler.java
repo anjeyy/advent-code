@@ -1,6 +1,7 @@
 package com.github.anjeyy.adventcode.eight;
 
 import com.github.anjeyy.adventcode.eight.InstructionParser.Instruction;
+import com.github.anjeyy.adventcode.eight.InstructionParser.InstructionModification;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -11,7 +12,10 @@ import java.util.Map.Entry;
 class Assembler {
 
     private final Map<Instruction, Boolean> instructions;
+    private final ListIterator<Entry<InstructionModification, Boolean>> instructionsModifiedIterator;
     private final ListIterator<Entry<Instruction, Boolean>> instructionsIterator;
+
+    private InstructionModification currentModification;
 
     static Assembler from(List<Instruction> instructions) {
         return new Assembler(instructions);
@@ -20,12 +24,22 @@ class Assembler {
     Assembler(List<Instruction> instructions) {
         this.instructions = initOrderedMap(instructions);
         this.instructionsIterator = new ArrayList<>(this.instructions.entrySet()).listIterator();
+        this.instructionsModifiedIterator = initModifiedListIterator(this.instructions);
     }
 
     private static Map<Instruction, Boolean> initOrderedMap(List<Instruction> instructions) {
         Map<Instruction, Boolean> map = new LinkedHashMap<>(instructions.size());
         instructions.forEach(i -> map.put(i, false));
         return map;
+    }
+
+    private static ListIterator<Entry<InstructionModification, Boolean>> initModifiedListIterator(
+        Map<Instruction, Boolean> instructions
+    ) {
+        Map<InstructionModification, Boolean> map = new LinkedHashMap<>(instructions.size());
+        instructions.forEach((key, value) -> map.put(InstructionModification.from(key), false));
+        List<Entry<InstructionModification, Boolean>> entryList = new ArrayList<>(map.entrySet());
+        return entryList.listIterator();
     }
 
     int execute() {
@@ -91,6 +105,58 @@ class Assembler {
             } else {
                 throw new IllegalStateException("Jumped too low.");
             }
+        }
+    }
+
+    int fixLoophole() {
+        currentModification = findFirstUnmodified();
+        while (hasLoophole()) {
+            resetModifiedInstruction();
+            currentModification = findFirstUnmodified();
+        }
+        return execute();
+    }
+
+    private boolean hasLoophole() {
+        execute();
+        boolean hasLoophole = instructionsIterator.hasNext();
+        resetIterator(instructionsIterator); // reset cursor
+        instructions.entrySet().forEach(e -> e.setValue(false));
+        return hasLoophole;
+    }
+
+    private void resetModifiedInstruction() {
+        currentModification.setModified(true);
+        alternateOperation(currentModification);
+    }
+
+    private InstructionModification findFirstUnmodified() {
+        while (instructionsModifiedIterator.hasNext()) {
+            Entry<InstructionModification, Boolean> currentEntry = instructionsModifiedIterator.next();
+            InstructionModification instructionModification = currentEntry.getKey();
+            if (instructionModification.isNotModified()) {
+                alternateOperation(instructionModification);
+                resetIterator(instructionsModifiedIterator);
+                return instructionModification;
+            }
+        }
+        throw new IllegalStateException("Should not happen.");
+    }
+
+    private static void alternateOperation(InstructionModification instructionModification) {
+        Instruction instruction = instructionModification.getInstruction();
+        if (instruction.getOperation() == Operation.NO_OPERATION) {
+            if (instruction.getArgument() != 0) {
+                instruction.setOperation(Operation.JUMPS);
+            }
+        } else if (instruction.getOperation() == Operation.JUMPS) {
+            instruction.setOperation(Operation.NO_OPERATION);
+        }
+    }
+
+    private static <E> void resetIterator(ListIterator<E> listIterator) {
+        while (listIterator.hasPrevious()) {
+            listIterator.previous();
         }
     }
 }
