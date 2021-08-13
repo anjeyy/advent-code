@@ -51,3 +51,9 @@ Solved puzzle.
 Solved puzzle.
 
 - https://adventofcode.com/2020/day/8
+
+## Day 9: Encoding Error
+
+Solved puzzle.
+
+- https://adventofcode.com/2020/day/9
