@@ -2,6 +2,8 @@ package com.github.anjeyy.adventcode.year2021.one;
 
 import com.github.anjeyy.adventcode.AdventFileReader;
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 class Main {
 
@@ -16,26 +18,26 @@ class Main {
     }
 
     private static void solvePartOne() throws IOException {
-        long validPasswords = AdventFileReader
-            .readInputAsStringList("2020/two_password-list.txt")
+        List<Integer> rawSeaMeasurements = AdventFileReader
+            .readInputAsStringList("2021/one_sea-floor-measurement.txt")
             .stream()
             .filter(AdventFileReader.stringIsNotBlank())
             .map(String::trim)
-            .map(PasswordParser::from)
-            .filter(PasswordParser::isValidPartOne)
-            .count();
+            .map(Integer::parseInt)
+            .collect(Collectors.toList());
 
-        System.out.println("Part I: " + validPasswords);
+        SeaFloorMeasurement seaFloorMeasurement = SeaFloorMeasurement.from(rawSeaMeasurements);
+        int increasedMeasures = seaFloorMeasurement.countIncreasedMeasurements();
+
+        System.out.println("Part I: " + increasedMeasures);
     }
 
     private static void solvePartTwo() throws IOException {
         long validPasswords = AdventFileReader
-            .readInputAsStringList("2020/two_password-list.txt")
+            .readInputAsStringList("2021/one_sea-floor-measurement.txt")
             .stream()
             .filter(AdventFileReader.stringIsNotBlank())
             .map(String::trim)
-            .map(PasswordParser::from)
-            .filter(PasswordParser::isValidPartTwo)
             .count();
 
         System.out.println("Part II: " + validPasswords);
