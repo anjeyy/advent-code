@@ -1,4 +1,4 @@
-package com.github.anjeyy.adventcode.year2020.two;
+package com.github.anjeyy.adventcode.year2021.one;
 
 import com.github.anjeyy.adventcode.AdventFileReader;
 import java.io.IOException;

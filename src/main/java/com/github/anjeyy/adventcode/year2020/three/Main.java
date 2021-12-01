@@ -51,7 +51,7 @@ class Main {
 
     private static Stream<String> readInput() throws IOException {
         return AdventFileReader
-            .readInputAsStringList("three_tree-map.txt")
+            .readInputAsStringList("2020/three_tree-map.txt")
             .stream()
             .filter(AdventFileReader.stringIsNotBlank())
             .map(String::trim);

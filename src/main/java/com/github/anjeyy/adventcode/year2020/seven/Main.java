@@ -18,7 +18,7 @@ class Main {
     private static void solvePartOne() throws IOException {
         Graph graph = new Graph();
         AdventFileReader
-            .readInputAsStringList("seven_regulation-list.txt")
+            .readInputAsStringList("2020/seven_regulation-list.txt")
             .stream()
             .map(String::trim)
             .map(LineParser::from)
@@ -31,7 +31,7 @@ class Main {
     private static void solvePartTwo() throws IOException {
         Graph graph = new Graph();
         AdventFileReader
-            .readInputAsStringList("seven_regulation-list.txt")
+            .readInputAsStringList("2020/seven_regulation-list.txt")
             .stream()
             .map(String::trim)
             .map(LineParser::from)

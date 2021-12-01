@@ -43,7 +43,7 @@ class Main {
     }
 
     private static List<String> prepareInputData() throws IOException {
-        List<String> passportLines = AdventFileReader.readInputAsStringList("four_passport-list.txt");
+        List<String> passportLines = AdventFileReader.readInputAsStringList("2020/four_passport-list.txt");
 
         StringBuilder tmp = new StringBuilder(Constants.EMPTY);
         List<String> rawPassports = new ArrayList<>();

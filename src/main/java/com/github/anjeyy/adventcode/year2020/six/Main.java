@@ -20,7 +20,7 @@ class Main {
         int uniqueAnswered = Arrays
             .stream(
                 AdventFileReader
-                    .readInputAsString("six_customs-list.txt")
+                    .readInputAsString("2020/six_customs-list.txt")
                     .split(System.lineSeparator() + System.lineSeparator())
             )
             .map(String::trim)
@@ -35,7 +35,7 @@ class Main {
         int commonAnswered = Arrays
             .stream(
                 AdventFileReader
-                    .readInputAsString("six_customs-list.txt")
+                    .readInputAsString("2020/six_customs-list.txt")
                     .split(System.lineSeparator() + System.lineSeparator())
             )
             .map(String::trim)
