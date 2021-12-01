@@ -1,5 +1,6 @@
 package com.github.anjeyy.adventcode.year2021.one;
 
+import java.util.ArrayList;
 import java.util.List;
 
 class SeaFloorMeasurement {
@@ -15,6 +16,27 @@ class SeaFloorMeasurement {
     }
 
     int countIncreasedMeasurements() {
+        return countIncreasedMeasurements(seaFloorMeasurements);
+    }
+
+    int countThreePackagesIncreasedMeasurements() {
+        int result = 0;
+        if (seaFloorMeasurements.isEmpty()) {
+            return result;
+        }
+
+        List<Integer> threePackages = new ArrayList<>();
+        for (int i = 0; i <= seaFloorMeasurements.size() - 3; i++) {
+            Integer first = seaFloorMeasurements.get(i);
+            Integer second = seaFloorMeasurements.get(i + 1);
+            Integer third = seaFloorMeasurements.get(i + 2);
+            Integer sum = first + second + third;
+            threePackages.add(sum);
+        }
+        return countIncreasedMeasurements(threePackages);
+    }
+
+    private static int countIncreasedMeasurements(List<Integer> seaFloorMeasurements) {
         int result = 0;
         if (seaFloorMeasurements.isEmpty()) {
             return result;

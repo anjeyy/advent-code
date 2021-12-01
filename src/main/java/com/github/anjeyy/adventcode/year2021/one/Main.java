@@ -33,13 +33,17 @@ class Main {
     }
 
     private static void solvePartTwo() throws IOException {
-        long validPasswords = AdventFileReader
+        List<Integer> rawSeaMeasurements = AdventFileReader
             .readInputAsStringList("2021/one_sea-floor-measurement.txt")
             .stream()
             .filter(AdventFileReader.stringIsNotBlank())
             .map(String::trim)
-            .count();
+            .map(Integer::parseInt)
+            .collect(Collectors.toList());
 
-        System.out.println("Part II: " + validPasswords);
+        SeaFloorMeasurement seaFloorMeasurement = SeaFloorMeasurement.from(rawSeaMeasurements);
+        int increasedMeasures = seaFloorMeasurement.countThreePackagesIncreasedMeasurements();
+
+        System.out.println("Part II: " + increasedMeasures);
     }
 }
