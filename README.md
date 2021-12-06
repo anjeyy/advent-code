@@ -66,3 +66,9 @@ Solved puzzle.
 Solved puzzle.
 
 - https://adventofcode.com/2021/day/1
+
+### Day 3: Binary Diagnostic
+
+Solved puzzle.
+
+- https://adventofcode.com/2021/day/3
