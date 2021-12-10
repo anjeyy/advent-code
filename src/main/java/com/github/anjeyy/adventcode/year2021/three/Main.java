@@ -30,8 +30,12 @@ class Main {
 
     private static void solvePartTwo() throws IOException {
         List<String> rawDiagnosticReport = extractRawDiagnosticReport();
-//
-//        System.out.println("Part II: " + increasedMeasures);
+
+        BitSequenceHandler bitSequenceHandler = BitSequenceHandler.from(rawDiagnosticReport);
+        long oxygenBitAsDecimal = bitSequenceHandler.calculateOxygenRate();
+        long co2ScrubberAsDecimal = bitSequenceHandler.calculateCo2ScrubberRate();
+
+        System.out.println("Part II: " + oxygenBitAsDecimal * co2ScrubberAsDecimal);
     }
 
     private static List<String> extractRawDiagnosticReport() throws IOException {
