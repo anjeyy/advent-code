@@ -33,13 +33,15 @@ class Main {
     }
 
     private static void solvePartTwo() throws IOException {
-//        List<String> rawDiagnosticReport = extractRawDiagnosticReport();
-//
-//        BitSequenceHandler bitSequenceHandler = BitSequenceHandler.from(rawDiagnosticReport);
-//        long oxygenBitAsDecimal = bitSequenceHandler.calculateOxygenRate();
-//        long co2ScrubberAsDecimal = bitSequenceHandler.calculateCo2ScrubberRate();
-//
-//        System.out.println("Part II: " + oxygenBitAsDecimal * co2ScrubberAsDecimal);
+        String bingoDraws = extractRawBingoDraws();
+        BingoDrawer bingoDrawer = BingoDrawer.from(bingoDraws);
+        List<List<String>> rawStructuredBingoBoards = extractRawBingoBoards();
+        List<BingoBoard> bingoBoards = rawStructuredBingoBoards.stream()
+                                                               .map(BingoBoard::from)
+                                                               .collect(Collectors.toList());
+        BingoGame bingoGame = BingoGame.with(bingoBoards, bingoDrawer);
+        int result = bingoGame.winLast();
+        System.out.println("Part I: " + result);
     }
 
     private static String extractRawBingoDraws() throws IOException {

@@ -1,5 +1,7 @@
 package com.github.anjeyy.adventcode.year2021.four;
 
+import com.github.anjeyy.adventcode.CollectionUtils;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +30,34 @@ class BingoGame {
                     if (gameWon) {
                         return currentBoard.calculateScore();
                     }
+                }
+            } else {
+                gameIsActive = false;
+            }
+        }
+        return -1;
+    }
+
+    int winLast() {
+        Optional<Integer> drawnNumber;
+        boolean gameIsActive = true;
+        List<BingoBoard> toBeRemoved = new ArrayList<>();
+        while (gameIsActive) {
+            drawnNumber = bingoDrawer.draw();
+            if (drawnNumber.isPresent()) {
+                for (BingoBoard currentBoard : bingoBoards) {
+                    boolean gameWon = currentBoard.checkWith(drawnNumber.get());
+                    if (gameWon) {
+                        if (bingoBoards.size() > 1) {
+                            toBeRemoved.add(currentBoard);
+                        } else {
+                            return currentBoard.calculateScore();
+                        }
+                    }
+                }
+                if (CollectionUtils.isNotEmpty(toBeRemoved)) {
+                    bingoBoards.removeAll(toBeRemoved);
+                    toBeRemoved.clear();
                 }
             } else {
                 gameIsActive = false;

@@ -8,7 +8,7 @@ class BingoBoard {
 
     private static final int BOARD_SIZE = 5;
 
-    private final int[][] board;
+    private final Double[][] board;
 
     private int winningScore;
 
@@ -16,28 +16,28 @@ class BingoBoard {
         this.board = createBoard(rawBoard);
     }
 
-    private static int[][] createBoard(List<String> rawBoard) {
+    private static Double[][] createBoard(List<String> rawBoard) {
         if (rawBoard.size() != BOARD_SIZE) {
             throw new IllegalArgumentException("Input board size is not five.");
         }
-        int[][] board = new int[BOARD_SIZE][BOARD_SIZE];
+        Double[][] board = new Double[BOARD_SIZE][BOARD_SIZE];
         for (int i = 0; i < rawBoard.size(); i++) {
             String currentRawRow = rawBoard.get(i);
-            int[] boardRow = createBoardRow(currentRawRow);
+            Double[] boardRow = createBoardRow(currentRawRow);
             board[i] = boardRow;
         }
         return board;
     }
 
-    private static int[] createBoardRow(String rawBoardRow) {
+    private static Double[] createBoardRow(String rawBoardRow) {
         String[] splitRawBoardRow = splitAndCleanseEntries(rawBoardRow);
         if (splitRawBoardRow.length != BOARD_SIZE) {
             throw new IllegalArgumentException(String.format("Input row of board size is not five: '%s'", rawBoardRow));
         }
-        int[] row = new int[BOARD_SIZE];
+        Double[] row = new Double[BOARD_SIZE];
         for (int i = 0; i < splitRawBoardRow.length; i++) {
             String rawValue = splitRawBoardRow[i];
-            row[i] = Integer.parseInt(rawValue);
+            row[i] = Double.parseDouble(rawValue);
         }
         return row;
     }
@@ -61,7 +61,7 @@ class BingoBoard {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 if (board[i][j] == number) {
-                    board[i][j] = number * (-1);
+                    board[i][j] = board[i][j] * (-1);
                     boolean gameWon = checkWinCondition(i, j);
                     if (gameWon) {
                         winningScore = number;
@@ -79,7 +79,8 @@ class BingoBoard {
 
     private boolean checkFullRow(int row) {
         for (int j = 0; j < board[row].length; j++) {
-            if (board[row][j] >= 0) {
+            Double cellValue = board[row][j];
+            if (isNonMarked(cellValue)){
                 return false;
             }
         }
@@ -88,17 +89,27 @@ class BingoBoard {
 
     private boolean checkFullColumn(int column) {
         for (int i = 0; i < board[column].length; i++) {
-            if (board[i][column] >= 0) {
+            Double cellValue = board[i][column];
+            if (isNonMarked(cellValue)){
                 return false;
             }
         }
         return true;
     }
 
+    private static boolean isNonMarked(Double cellValue) {
+        if (cellValue > 0) {
+            return true;
+        } else if (cellValue == 0 && !cellValue.equals(-0.0d)) {
+            return true;
+        }
+        return false;
+    }
+
     int calculateScore() {
         int result = 0;
-        for (int[] row : board) {
-            for (int value : row) {
+        for (Double[] row : board) {
+            for (Double value : row) {
                 if (value > 0) {
                     result += value;
                 }
@@ -110,8 +121,8 @@ class BingoBoard {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for (int[] row : board) {
-            for (int value : row) {
+        for (Double[] row : board) {
+            for (Double value : row) {
                 result.append(value).append(Constants.WHITESPACE);
             }
             result.append(Constants.NEW_LINE);
