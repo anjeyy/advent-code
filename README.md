@@ -78,3 +78,9 @@ Solved puzzle.
 Solved puzzle.
 
 - https://adventofcode.com/2021/day/4
+
+### Day 5: Hydrothermal Venture
+
+Solved puzzle.
+
+- https://adventofcode.com/2021/day/5
