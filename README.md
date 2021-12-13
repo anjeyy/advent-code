@@ -72,3 +72,9 @@ Solved puzzle.
 Solved puzzle.
 
 - https://adventofcode.com/2021/day/3
+
+### Day 4: Giant Squid
+
+Solved puzzle.
+
+- https://adventofcode.com/2021/day/4
