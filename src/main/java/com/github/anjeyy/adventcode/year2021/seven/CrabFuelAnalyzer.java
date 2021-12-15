@@ -1,10 +1,8 @@
 package com.github.anjeyy.adventcode.year2021.seven;
 
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 class CrabFuelAnalyzer {
 
@@ -21,7 +19,7 @@ class CrabFuelAnalyzer {
     }
 
     int horizontalPositionWithLeastFuel() {
-        Queue<Integer> alignedPositions = new ArrayDeque<>(positions);
+        Queue<Integer> alignedPositions = determinePositionRange();
         int result = Integer.MAX_VALUE;
         while (!alignedPositions.isEmpty()) {
             int aligned = alignedPositions.poll();
@@ -43,10 +41,41 @@ class CrabFuelAnalyzer {
         return result;
     }
 
+    int horizontalPositionWithComplexLeastFuel() {
+        Queue<Integer> alignedPositions = determinePositionRange();
+        int result = Integer.MAX_VALUE;
+        while (!alignedPositions.isEmpty()) {
+            int aligned = alignedPositions.poll();
+            int fuelCosts = calculateComplexFuelCosts(aligned);
+            if (fuelCosts < result) {
+                result = fuelCosts;
+            }
+        }
+        return result;
+    }
+
+    private int calculateComplexFuelCosts(int alignedPosition) {
+        int result = 0;
+        for (Integer currentPosition : positions) {
+            int cost = currentPosition - alignedPosition;
+            cost = normalizeCosts(cost);
+            cost = (cost * (cost + 1)) / 2;
+            result += cost;
+        }
+        return result;
+    }
+
     private static int normalizeCosts(int cost) {
         if (cost < 0) {
             return cost * (-1);
         }
         return cost;
+    }
+
+    private Queue<Integer> determinePositionRange() {
+        int maxPosition = Collections.max(positions);
+        return IntStream.rangeClosed(0, maxPosition)
+                .boxed()
+                .collect(Collectors.toCollection(ArrayDeque::new));
     }
 }

@@ -27,7 +27,8 @@ class Main {
     private static void solvePartTwo() throws IOException {
         String rawHorizontalCrabs = AdventFileReader
                 .readInputAsString("2021/seven_horizontal-crabs.txt");
+        CrabFuelAnalyzer crabFuelAnalyzer = new CrabFuelAnalyzer(rawHorizontalCrabs);
 
-        System.out.println("Part II: ");
+        System.out.println("Part II: " + crabFuelAnalyzer.horizontalPositionWithComplexLeastFuel());
     }
 }
