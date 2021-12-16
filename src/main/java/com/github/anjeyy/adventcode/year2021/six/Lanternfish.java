@@ -4,8 +4,12 @@ class Lanternfish {
 
     private int internalTimer;
 
-    Lanternfish(int internalTimer) {
+    private Lanternfish(int internalTimer) {
         this.internalTimer = internalTimer;
+    }
+
+    static Lanternfish of(int internalTimer) {
+        return new Lanternfish(internalTimer);
     }
 
     boolean simulateDay() {

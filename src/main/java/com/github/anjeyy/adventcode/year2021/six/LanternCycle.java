@@ -18,7 +18,7 @@ class LanternCycle {
     private static List<Lanternfish> extractFishes(String rawInput) {
         return Arrays.stream(rawInput.split(","))
                      .map(Integer::parseInt)
-                     .map(Lanternfish::new)
+                     .map(Lanternfish::of)
                      .collect(Collectors.toCollection(LinkedList::new));
     }
 
@@ -27,7 +27,7 @@ class LanternCycle {
     }
 
     int simulate(int days) {
-        Supplier<Lanternfish> newLanternFish = () -> new Lanternfish(8);
+        Supplier<Lanternfish> newLanternFish = () -> Lanternfish.of(8);
         int newFishes = 0;
         for (int i = 0; i < days; i++) {
             System.out.printf("Day '%s' of '%s'.\n", i, days);
