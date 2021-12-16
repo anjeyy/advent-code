@@ -85,6 +85,12 @@ Solved puzzle.
 
 - https://adventofcode.com/2021/day/5
 
+### Day 6: Lanternfish
+
+Solved puzzle.
+
+- https://adventofcode.com/2021/day/6
+
 ### Day 7: The Treachery of Whales
 
 Solved puzzle.
