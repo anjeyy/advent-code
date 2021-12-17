@@ -19,7 +19,7 @@ class Main {
 
     private static void solvePartOne() throws IOException {
         List<String> rawVentRanges = AdventFileReader
-            .readInputAsStringList("2021/five_vent-lines.txt");
+            .readInputAsStringList("2021/05_vent-lines.txt");
 
         List<VentRange> ventRanges = new ArrayList<>();
         for (String currentRawRange : rawVentRanges) {
@@ -39,7 +39,7 @@ class Main {
 
     private static void solvePartTwo() throws IOException {
         List<String> rawVentRanges = AdventFileReader
-            .readInputAsStringList("2021/five_vent-lines.txt");
+            .readInputAsStringList("2021/05_vent-lines.txt");
 
         List<VentRange> ventRanges = new ArrayList<>();
         for (String currentRawRange : rawVentRanges) {

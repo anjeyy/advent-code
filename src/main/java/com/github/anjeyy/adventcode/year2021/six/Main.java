@@ -25,7 +25,7 @@ class Main {
     }
 
     private static void solvePartTwo() throws IOException {
-        String rawLanternfishCycle = AdventFileReader.readInputAsString("2021/six_lanternfish-cycle.txt");
+        String rawLanternfishCycle = AdventFileReader.readInputAsString("2021/06_lanternfish-cycle.txt");
         String[] rawFishy = rawLanternfishCycle.split(",");
         LanternFishMap fishMap = new LanternFishMap();
         for (String s : rawFishy) {
@@ -51,7 +51,7 @@ class Main {
     }
 
     private static LanternCycle extractLanternCycle() throws IOException {
-        String rawLanternfishCycle = AdventFileReader.readInputAsString("2021/six_lanternfish-cycle.txt");
+        String rawLanternfishCycle = AdventFileReader.readInputAsString("2021/06_lanternfish-cycle.txt");
         return LanternCycle.from(rawLanternfishCycle);
     }
 }

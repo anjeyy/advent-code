@@ -19,7 +19,7 @@ class Main {
 
     private static void solvePartOne() throws IOException {
         List<Integer> rawSeaMeasurements = AdventFileReader
-            .readInputAsStringList("2021/one_sea-floor-measurement.txt")
+            .readInputAsStringList("2021/01_sea-floor-measurement.txt")
             .stream()
             .filter(AdventFileReader.stringIsNotBlank())
             .map(String::trim)
@@ -34,7 +34,7 @@ class Main {
 
     private static void solvePartTwo() throws IOException {
         List<Integer> rawSeaMeasurements = AdventFileReader
-            .readInputAsStringList("2021/one_sea-floor-measurement.txt")
+            .readInputAsStringList("2021/01_sea-floor-measurement.txt")
             .stream()
             .filter(AdventFileReader.stringIsNotBlank())
             .map(String::trim)

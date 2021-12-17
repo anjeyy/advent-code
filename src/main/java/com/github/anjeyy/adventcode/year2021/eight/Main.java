@@ -18,7 +18,7 @@ class Main {
 
     private static void solvePartOne() throws IOException {
         SignalSequence signalSequence =
-            AdventFileReader.readInputAsStringList("2021/eight_segment-wire.txt")
+            AdventFileReader.readInputAsStringList("2021/08_segment-wire.txt")
                             .stream()
                             .map(SignalEntry::new)
                             .collect(Collectors.collectingAndThen(Collectors.toList(), SignalSequence::new));
@@ -28,7 +28,7 @@ class Main {
 
     private static void solvePartTwo() throws IOException {
         SignalSequence signalSequence =
-            AdventFileReader.readInputAsStringList("2021/eight_segment-wire.txt")
+            AdventFileReader.readInputAsStringList("2021/08_segment-wire.txt")
                             .stream()
                             .map(SignalEntry::new)
                             .collect(Collectors.collectingAndThen(Collectors.toList(), SignalSequence::new));

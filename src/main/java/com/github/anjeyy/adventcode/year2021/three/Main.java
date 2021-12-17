@@ -1,7 +1,6 @@
 package com.github.anjeyy.adventcode.year2021.three;
 
 import com.github.anjeyy.adventcode.AdventFileReader;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,7 +39,7 @@ class Main {
 
     private static List<String> extractRawDiagnosticReport() throws IOException {
         return AdventFileReader
-                .readInputAsStringList("2021/three_diagnostic-report.txt")
+                .readInputAsStringList("2021/03_diagnostic-report.txt")
                 .stream()
                 .filter(AdventFileReader.stringIsNotBlank())
                 .map(String::trim)

@@ -1,7 +1,6 @@
 package com.github.anjeyy.adventcode.year2021.seven;
 
 import com.github.anjeyy.adventcode.AdventFileReader;
-
 import java.io.IOException;
 
 class Main {
@@ -18,7 +17,7 @@ class Main {
 
     private static void solvePartOne() throws IOException {
         String rawHorizontalCrabs = AdventFileReader
-                .readInputAsString("2021/seven_horizontal-crabs.txt");
+                .readInputAsString("2021/07_horizontal-crabs.txt");
         CrabFuelAnalyzer crabFuelAnalyzer = new CrabFuelAnalyzer(rawHorizontalCrabs);
 
         System.out.println("Part I: " + crabFuelAnalyzer.horizontalPositionWithLeastFuel());
@@ -26,7 +25,7 @@ class Main {
 
     private static void solvePartTwo() throws IOException {
         String rawHorizontalCrabs = AdventFileReader
-                .readInputAsString("2021/seven_horizontal-crabs.txt");
+                .readInputAsString("2021/07_horizontal-crabs.txt");
         CrabFuelAnalyzer crabFuelAnalyzer = new CrabFuelAnalyzer(rawHorizontalCrabs);
 
         System.out.println("Part II: " + crabFuelAnalyzer.horizontalPositionWithComplexLeastFuel());

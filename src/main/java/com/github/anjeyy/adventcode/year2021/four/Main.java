@@ -46,7 +46,7 @@ class Main {
 
     private static String extractRawBingoDraws() throws IOException {
         return AdventFileReader
-            .readInputAsStringList("2021/four_bingo-board.txt")
+            .readInputAsStringList("2021/04_bingo-board.txt")
             .stream()
             .findFirst()
             .orElseThrow();
@@ -54,7 +54,7 @@ class Main {
 
     private static List<List<String>> extractRawBingoBoards() throws IOException {
         List<String> rawInput = AdventFileReader
-            .readInputAsStringList("2021/four_bingo-board.txt");
+            .readInputAsStringList("2021/04_bingo-board.txt");
         List<String> rawBingoBoards = rawInput.subList(2, rawInput.size())
                                               .stream()
                                               .map(String::trim)
