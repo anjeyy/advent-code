@@ -1,6 +1,7 @@
 package com.github.anjeyy.adventcode.year2021.eight;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,9 +13,11 @@ class SignalSequence {
         this.signalEntries = Objects.requireNonNullElse(signalEntries, new ArrayList<>());
     }
 
-    int countUniqueSegments() {
-
-
-        return -1;
+    long countUniqueSegments() {
+        return signalEntries.stream()
+                            .map(SignalEntry::getOutput)
+                            .flatMap(Collection::stream)
+                            .filter(Output::isUniqueDigit)
+                            .count();
     }
 }

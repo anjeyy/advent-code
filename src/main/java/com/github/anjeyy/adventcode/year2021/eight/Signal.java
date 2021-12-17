@@ -8,7 +8,7 @@ class Signal {
         this.rawSignal = rawSignal;
     }
 
-    static Signal of(String rawSignal){
+    static Signal of(String rawSignal) {
         return new Signal(rawSignal);
     }
 
