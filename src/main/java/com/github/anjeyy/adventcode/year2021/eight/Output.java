@@ -2,11 +2,6 @@ package com.github.anjeyy.adventcode.year2021.eight;
 
 class Output {
 
-    private static final int ONE_LENGTH = 2;
-    private static final int FOUR_LENGTH = 4;
-    private static final int SEVEN_LENGTH = 3;
-    private static final int EIGHT_LENGTH = 7;
-
     private final String encoded;
 
     Output(String encoded) {
@@ -17,10 +12,28 @@ class Output {
         return new Output(encoded);
     }
 
+    boolean matchesSignal(Signal signal) {
+        if (signal.length() != encoded.length()) {
+            return false;
+        }
+        String rawSignal = signal.getRawSignal();
+        for (char currentChar : rawSignal.toCharArray()) {
+            boolean isPart = encoded.indexOf(currentChar) != -1;
+            if (!isPart) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     boolean isUniqueDigit() {
-        return encoded.length() == ONE_LENGTH ||
-            encoded.length() == FOUR_LENGTH ||
-            encoded.length() == SEVEN_LENGTH ||
-            encoded.length() == EIGHT_LENGTH;
+        return Digit.encodeViaUniqueLength(encoded.length()).isPresent();
+    }
+
+    @Override
+    public String toString() {
+        return "Output{" +
+            "encoded='" + encoded + '\'' +
+            '}';
     }
 }

@@ -33,6 +33,6 @@ class Main {
                             .map(SignalEntry::new)
                             .collect(Collectors.collectingAndThen(Collectors.toList(), SignalSequence::new));
 
-        System.out.println("Part II: ");
+        System.out.println("Part II: " + signalSequence.sumAllOutputs());
     }
 }

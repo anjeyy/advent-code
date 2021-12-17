@@ -15,9 +15,13 @@ class SignalSequence {
 
     long countUniqueSegments() {
         return signalEntries.stream()
-                            .map(SignalEntry::getOutput)
+                            .map(SignalEntry::getOutputs)
                             .flatMap(Collection::stream)
                             .filter(Output::isUniqueDigit)
                             .count();
+    }
+
+    long sumAllOutputs() {
+        return signalEntries.stream().mapToLong(SignalEntry::decodeOutput).sum();
     }
 }
