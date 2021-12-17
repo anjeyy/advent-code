@@ -102,3 +102,9 @@ Solved puzzle.
 Solved puzzle.
 
 - https://adventofcode.com/2021/day/8
+
+### Day 9: Smoke Basin
+
+Solved puzzle.
+
+- https://adventofcode.com/2021/day/9
