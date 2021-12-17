@@ -96,3 +96,9 @@ Solved puzzle.
 Solved puzzle.
 
 - https://adventofcode.com/2021/day/7
+
+### Day 8: Seven Segment Search
+
+Solved puzzle.
+
+- https://adventofcode.com/2021/day/8
