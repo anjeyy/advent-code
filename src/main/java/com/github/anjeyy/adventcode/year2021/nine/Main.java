@@ -24,8 +24,8 @@ class Main {
     }
 
     private static void solvePartTwo() throws IOException {
-        AdventFileReader.readInputAsStringList("2021/09_smoke-heightmap.txt");
+        SmokeHeightMap smokeHeightMap = AdventFileReader.readInputAsStringList("2021/09_smoke-heightmap.txt").stream().collect(Collectors.collectingAndThen(Collectors.toList(), SmokeHeightMap::new));
 
-        System.out.println("Part II: ");
+        System.out.println("Part II: " + smokeHeightMap.threeLargestBasins());
     }
 }
