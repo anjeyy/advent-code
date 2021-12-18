@@ -2,8 +2,12 @@ package com.github.anjeyy.adventcode.year2021.nine;
 
 import com.github.anjeyy.adventcode.CollectionUtils;
 import com.github.anjeyy.adventcode.Constants;
-
-import java.util.*;
+import java.util.AbstractMap;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 import java.util.stream.Collectors;
 
 class SmokeHeightMap {
@@ -44,8 +48,10 @@ class SmokeHeightMap {
             List<Integer> pathResult = new ArrayList<>();
             while (CollectionUtils.isNotEmpty(flowPoints)) {
                 Map.Entry<Integer, Integer> currentFlowPoint = flowPoints.poll();
-                pathResult.add(map[currentFlowPoint.getKey()][currentFlowPoint.getValue()]);
-                //todo debug
+                int value = map[currentFlowPoint.getKey()][currentFlowPoint.getValue()];
+                if (value < 9) {
+                    pathResult.add(value);
+                }
                 addLeftNeighbour(currentFlowPoint, flowPoints);
                 addRightNeighbour(currentFlowPoint, flowPoints);
                 addBelowNeighbour(currentFlowPoint, flowPoints);
@@ -69,45 +75,61 @@ class SmokeHeightMap {
         return result.stream().map(List::size).collect(Collectors.toList());
     }
 
-    private void addLeftNeighbour(Map.Entry<Integer, Integer> currentFlowPoint, Queue<Map.Entry<Integer, Integer>> flowPoints) {
+    private void addLeftNeighbour(Map.Entry<Integer, Integer> currentFlowPoint,
+        Queue<Map.Entry<Integer, Integer>> flowPoints) {
         int column = currentFlowPoint.getValue();
         boolean leftNeighbourInRange = column - 1 >= 0;
         if (leftNeighbourInRange) {
-            Map.Entry<Integer, Integer> leftNeighbour = new AbstractMap.SimpleEntry<>(currentFlowPoint.getKey(), currentFlowPoint.getValue() - 1);
+            Map.Entry<Integer, Integer> leftNeighbour = new AbstractMap.SimpleEntry<>(
+                currentFlowPoint.getKey(),
+                currentFlowPoint.getValue() - 1
+            );
             if (isNotNine(leftNeighbour)) {
                 flowPoints.offer(leftNeighbour);
             }
         }
     }
 
-    private void addRightNeighbour(Map.Entry<Integer, Integer> currentFlowPoint, Queue<Map.Entry<Integer, Integer>> flowPoints) {
+    private void addRightNeighbour(Map.Entry<Integer, Integer> currentFlowPoint,
+        Queue<Map.Entry<Integer, Integer>> flowPoints) {
         int row = currentFlowPoint.getKey();
         int column = currentFlowPoint.getValue();
         boolean rightNeighbourInRange = column + 1 < map[row].length;
         if (rightNeighbourInRange) {
-            Map.Entry<Integer, Integer> rightNeighbour = new AbstractMap.SimpleEntry<>(currentFlowPoint.getKey(), currentFlowPoint.getValue() + 1);
+            Map.Entry<Integer, Integer> rightNeighbour = new AbstractMap.SimpleEntry<>(
+                currentFlowPoint.getKey(),
+                currentFlowPoint.getValue() + 1
+            );
             if (isNotNine(rightNeighbour)) {
                 flowPoints.offer(rightNeighbour);
             }
         }
     }
 
-    private void addBelowNeighbour(Map.Entry<Integer, Integer> currentFlowPoint, Queue<Map.Entry<Integer, Integer>> flowPoints) {
+    private void addBelowNeighbour(Map.Entry<Integer, Integer> currentFlowPoint,
+        Queue<Map.Entry<Integer, Integer>> flowPoints) {
         int row = currentFlowPoint.getKey();
         boolean belowNeighbourInRange = row + 1 < map.length;
         if (belowNeighbourInRange) {
-            Map.Entry<Integer, Integer> belowNeighbour = new AbstractMap.SimpleEntry<>(currentFlowPoint.getKey() + 1, currentFlowPoint.getValue());
+            Map.Entry<Integer, Integer> belowNeighbour = new AbstractMap.SimpleEntry<>(
+                currentFlowPoint.getKey() + 1,
+                currentFlowPoint.getValue()
+            );
             if (isNotNine(belowNeighbour)) {
                 flowPoints.offer(belowNeighbour);
             }
         }
     }
 
-    private void addAboveNeighbour(Map.Entry<Integer, Integer> currentFlowPoint, Queue<Map.Entry<Integer, Integer>> flowPoints) {
+    private void addAboveNeighbour(Map.Entry<Integer, Integer> currentFlowPoint,
+        Queue<Map.Entry<Integer, Integer>> flowPoints) {
         int row = currentFlowPoint.getKey();
         boolean aboveNeighbourInRange = row - 1 >= 0;
         if (aboveNeighbourInRange) {
-            Map.Entry<Integer, Integer> aboveNeighbour = new AbstractMap.SimpleEntry<>(currentFlowPoint.getKey() - 1, currentFlowPoint.getValue());
+            Map.Entry<Integer, Integer> aboveNeighbour = new AbstractMap.SimpleEntry<>(
+                currentFlowPoint.getKey() - 1,
+                currentFlowPoint.getValue()
+            );
             if (isNotNine(aboveNeighbour)) {
                 flowPoints.offer(aboveNeighbour);
             }
@@ -137,7 +159,10 @@ class SmokeHeightMap {
     }
 
     private boolean isLowPoint(int row, int column) {
-        return leftIsHigher(row, column) && belowIsHigher(row, column) && rightIsHigher(row, column) && aboveIsHigher(row, column);
+        return leftIsHigher(row, column) &&
+            belowIsHigher(row, column) &&
+            rightIsHigher(row, column) &&
+            aboveIsHigher(row, column);
     }
 
     private boolean leftIsHigher(Map.Entry<Integer, Integer> entry) {
