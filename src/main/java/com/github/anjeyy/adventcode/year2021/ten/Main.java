@@ -31,6 +31,6 @@ class Main {
                             .stream()
                             .collect(Collectors.collectingAndThen(Collectors.toList(), ChunkHandler::from));
 
-        System.out.println("Part II: ");
+        System.out.println("Part II: " + chunkHandler.calculateIncompleteScore());
     }
 }

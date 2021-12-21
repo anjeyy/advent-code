@@ -1,6 +1,9 @@
 package com.github.anjeyy.adventcode.year2021.ten;
 
+import com.github.anjeyy.adventcode.CollectionUtils;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.EnumMap;
 import java.util.List;
@@ -10,6 +13,7 @@ class ChunkHandler {
 
     private final Map<Bracket, Long> chunkMap = new EnumMap<>(Bracket.class);
     private final Deque<Bracket> openingBrackets = new ArrayDeque<>();
+    private final List<Deque<Bracket>> incompleteOpeningBrackets = new ArrayList<>();
 
     private final List<String> chunks;
 
@@ -24,16 +28,37 @@ class ChunkHandler {
         return new ChunkHandler(chunks);
     }
 
+    long calculateIncompleteScore() {
+        calculateCorruptedScore();
+        List<Long> result = new ArrayList<>();
+        for (Deque<Bracket> currentOpeningBrackets : incompleteOpeningBrackets) {
+            long lineResult = 0L;
+            while (CollectionUtils.isNotEmpty(currentOpeningBrackets)) {
+                Bracket bracket = currentOpeningBrackets.pop();
+                lineResult = (lineResult * 5L) + bracket.closingScore();
+            }
+            result.add(lineResult);
+        }
+        Collections.sort(result);
+        int index = result.size() / 2;
+        return result.get(index);
+    }
+
     long calculateCorruptedScore() {
         corruptedScore = 0L;
         for (String currentChunkLine : chunks) {
+            boolean skip = false;
             final char[] chunkChars = currentChunkLine.toCharArray();
             for (char currentChar : chunkChars) {
                 appendOpeningBracket(currentChar);
-                boolean skip = decreaseClosingBracket(currentChar);
+                skip = decreaseClosingBracket(currentChar);
                 if (skip) {
                     break;
                 }
+            }
+            if (!skip) {
+                Deque<Bracket> deepCopy = CollectionUtils.createDequeDeepCopy(openingBrackets);
+                incompleteOpeningBrackets.add(deepCopy);
             }
             reset();
         }

@@ -6,26 +6,46 @@ import java.util.NoSuchElementException;
 enum Bracket {
     ROUND_BRACKET('(', ')') {
         @Override
-        long score() {
+        protected long score() {
             return 3;
+        }
+
+        @Override
+        protected long closingScore() {
+            return 1;
         }
     },
     SQUARE_BRACKET('[', ']') {
         @Override
-        long score() {
+        protected long score() {
             return 57;
+        }
+
+        @Override
+        protected long closingScore() {
+            return 2;
         }
     },
     BRACE_BRACKET('{', '}') {
         @Override
-        long score() {
+        protected long score() {
             return 1197;
+        }
+
+        @Override
+        protected long closingScore() {
+            return 3;
         }
     },
     ANGLE_BRACKET('<', '>') {
         @Override
-        long score() {
+        protected long score() {
             return 25137;
+        }
+
+        @Override
+        protected long closingScore() {
+            return 4;
         }
     };
 
@@ -37,12 +57,14 @@ enum Bracket {
         this.closing = closing;
     }
 
+    protected abstract long closingScore();
+
     static long score(char anyChar) {
         Bracket bracket = from(anyChar);
         return bracket.score();
     }
 
-    abstract long score();
+    protected abstract long score();
 
     static Bracket from(char anyChar) {
         return Arrays.stream(values())
