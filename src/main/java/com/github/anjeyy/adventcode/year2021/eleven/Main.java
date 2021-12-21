@@ -2,6 +2,7 @@ package com.github.anjeyy.adventcode.year2021.eleven;
 
 import com.github.anjeyy.adventcode.AdventFileReader;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 class Main {
 
@@ -16,14 +17,17 @@ class Main {
     }
 
     private static void solvePartOne() throws IOException {
-            AdventFileReader.readInputAsStringList("2021/11_octopus-energy-level.txt");
+        EnergyGrid energyGrid =
+            AdventFileReader.readInputAsStringList("2021/11_octopus-energy-level.txt")
+                            .stream()
+                            .collect(Collectors.collectingAndThen(Collectors.toList(), EnergyGrid::new));
 
-        System.out.println("Part I: " );
+        System.out.println("Part I: "+ energyGrid.calculateFlashes());
     }
 
     private static void solvePartTwo() throws IOException {
-            AdventFileReader.readInputAsStringList("2021/11_octopus-energy-level.txt");
+        AdventFileReader.readInputAsStringList("2021/11_octopus-energy-level.txt");
 
-        System.out.println("Part II: " );
+        System.out.println("Part II: ");
     }
 }
