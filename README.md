@@ -45,7 +45,10 @@ Please have a look yourself, and I encourage you to solve listed puzzles on your
     - https://adventofcode.com/2021/day/10
 
 - Day 11: Dumbo Octopus
-  - https://adventofcode.com/2021/day/11
+    - https://adventofcode.com/2021/day/11
+
+- Day 12: Passage Pathing
+    - https://adventofcode.com/2021/day/12
 
 ## Year 2020
 
