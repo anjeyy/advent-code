@@ -33,6 +33,21 @@ class EnergyGrid {
         return result;
     }
 
+    long firstSynchronizedFlash() {
+        boolean allFlashed = false;
+        long counter = 1L;
+        while (!allFlashed) {
+            increase();
+            long flashes = countFlashes();
+            allFlashed = (flashes == ROW_SIZE * COLUMN_SIZE);
+            if (allFlashed) {
+                return counter;
+            }
+            counter++;
+        }
+        throw new IllegalStateException("Error.");
+    }
+
     long calculateFlashes() {
         long result = 0L;
         for (int i = 0; i < 100; i++) {
@@ -140,7 +155,7 @@ class EnergyGrid {
     private void addToNeighbourStack(int i, int j) {
         Entry<Integer, Integer> entry = new SimpleEntry<>(i, j);
         boolean isNotAlreadyStacked = !stack.contains(entry);
-        if (grid[i][j] >= 9 && isNotAlreadyStacked) {
+        if (grid[i][j] > 9 && isNotAlreadyStacked) {
             stack.push(entry);
         }
     }
@@ -159,7 +174,7 @@ class EnergyGrid {
         long result = 0L;
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
-                if (grid[i][j] >= 9) {
+                if (grid[i][j] > 9) {
                     result++;
                     grid[i][j] = 0;
                 }

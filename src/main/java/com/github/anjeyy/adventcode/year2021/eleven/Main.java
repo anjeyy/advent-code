@@ -22,12 +22,15 @@ class Main {
                             .stream()
                             .collect(Collectors.collectingAndThen(Collectors.toList(), EnergyGrid::new));
 
-        System.out.println("Part I: "+ energyGrid.calculateFlashes());
+        System.out.println("Part I: " + energyGrid.calculateFlashes());
     }
 
     private static void solvePartTwo() throws IOException {
-        AdventFileReader.readInputAsStringList("2021/11_octopus-energy-level.txt");
+        EnergyGrid energyGrid =
+            AdventFileReader.readInputAsStringList("2021/11_octopus-energy-level.txt")
+                            .stream()
+                            .collect(Collectors.collectingAndThen(Collectors.toList(), EnergyGrid::new));
 
-        System.out.println("Part II: ");
+        System.out.println("Part II: " + energyGrid.firstSynchronizedFlash());
     }
 }
