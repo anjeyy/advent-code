@@ -7,8 +7,6 @@ class Cave {
     private final String name;
     private final boolean small;
 
-    private boolean visited = false;
-
     private Cave(String name) {
         this.name = Objects.requireNonNull(name, "Name for cave is necessary.");
         this.small = determineSize(name);
@@ -27,12 +25,12 @@ class Cave {
         return new Cave(name);
     }
 
-    boolean isSmall() {
-        return small;
+    boolean isNotSmall() {
+        return !isSmall();
     }
 
-    void setVisited(boolean visited) {
-        this.visited = visited;
+    boolean isSmall() {
+        return small;
     }
 
     boolean isEnd() {
@@ -62,7 +60,6 @@ class Cave {
         return "Cave{" +
             "name='" + name + '\'' +
             ", small=" + small +
-            ", visited=" + visited +
             '}';
     }
 }

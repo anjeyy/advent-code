@@ -74,6 +74,34 @@ class Graph {
         return paths.size();
     }
 
+    long determineAdvancedDistinctPaths() {
+        List<List<Cave>> paths = new ArrayList<>();
+        List<Deque<Cave>> startingStack = createStartingStack();
+        Queue<Deque<Cave>> visiting = new ArrayDeque<>(startingStack);
+        while (CollectionUtils.isNotEmpty(visiting)) {
+            Deque<Cave> currentCavePath = visiting.poll();
+            Cave currentCave = currentCavePath.peek();
+            Set<Cave> neighbourCaves = adjacencyMap.get(currentCave);
+            for (Cave neighbourCave : neighbourCaves) {
+                if (neighbourCave.isEnd()) {
+                    Deque<Cave> caveCopy = CollectionUtils.createDequeDeepCopy(currentCavePath);
+                    caveCopy.push(neighbourCave);
+                    List<Cave> result = new ArrayList<>(caveCopy);
+                    paths.add(result);
+                } else if (
+                    neighbourCave.equals(Cave.of("start")) || smallLimitReached(currentCavePath, neighbourCave)
+                ) {
+                    //skip
+                } else {
+                    Deque<Cave> caveCopy = CollectionUtils.createDequeDeepCopy(currentCavePath);
+                    caveCopy.push(neighbourCave);
+                    visiting.offer(caveCopy);
+                }
+            }
+        }
+        return paths.size();
+    }
+
     private List<Deque<Cave>> createStartingStack() {
         Cave start = Cave.of("start");
         Set<Cave> neighbours = adjacencyMap.get(start);
@@ -85,5 +113,26 @@ class Graph {
             result.add(caveStack);
         }
         return result;
+    }
+
+    private boolean smallLimitReached(Deque<Cave> currentCavePath, Cave neighbourCave) {
+        if (neighbourCave.isNotSmall() || !currentCavePath.contains(neighbourCave)) {
+            return false;
+        }
+        int counter = 0;
+        for (Cave currentCave : currentCavePath) {
+            if (currentCave.isSmall() && !currentCave.equals(Cave.of("start"))) {
+                for (Cave anotherCurrentCave : currentCavePath) {
+                    if (anotherCurrentCave.isSmall() && currentCave.equals(anotherCurrentCave)) {
+                        counter++;
+                    }
+                }
+                if (counter > 1) {
+                    return currentCavePath.contains(neighbourCave);
+                }
+                counter = 0;
+            }
+        }
+        return false;
     }
 }

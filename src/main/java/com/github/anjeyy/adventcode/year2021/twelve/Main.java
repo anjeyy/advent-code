@@ -25,7 +25,8 @@ class Main {
 
     private static void solvePartTwo() throws IOException {
         List<String> rawRoutes = AdventFileReader.readInputAsStringList("2021/12_caves-map.txt");
+        Graph graph = Graph.from(rawRoutes);
 
-        System.out.println("Part II: ");
+        System.out.println("Part II: " + graph.determineAdvancedDistinctPaths());
     }
 }
