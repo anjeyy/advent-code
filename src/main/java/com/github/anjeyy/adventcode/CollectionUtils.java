@@ -16,15 +16,19 @@ public class CollectionUtils {
         return !collection.isEmpty();
     }
 
-    public static <E> List<E> createDeepCopy(Collection<E> collection){
+    public static <E> List<E> createDeepCopy(Collection<E> collection) {
         List<E> result = new ArrayList<>();
         collection.forEach(result::add);
         return result;
     }
 
-    public static <E> Deque<E> createDequeDeepCopy(Deque<E> deque){
+    public static <E> Deque<E> createDequeDeepCopy(Deque<E> deque) {
+        if (deque instanceof ArrayDeque) {
+            ArrayDeque<E> safeDeque = (ArrayDeque<E>) deque;
+            return safeDeque.clone();
+        }
         Deque<E> result = new ArrayDeque<>();
-        while (isNotEmpty(deque)){
+        while (isNotEmpty(deque)) {
             result.push(deque.removeLast());
         }
         return result;
