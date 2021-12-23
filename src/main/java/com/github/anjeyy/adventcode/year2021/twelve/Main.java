@@ -2,6 +2,7 @@ package com.github.anjeyy.adventcode.year2021.twelve;
 
 import com.github.anjeyy.adventcode.AdventFileReader;
 import java.io.IOException;
+import java.util.List;
 
 class Main {
 
@@ -16,13 +17,14 @@ class Main {
     }
 
     private static void solvePartOne() throws IOException {
-        AdventFileReader.readInputAsStringList("2021/11_octopus-energy-level.txt");
+        List<String> rawRoutes = AdventFileReader.readInputAsStringList("2021/12_caves-map.txt");
+        Graph graph = Graph.from(rawRoutes);
 
-        System.out.println("Part I: ");
+        System.out.println("Part I: " + graph.determineDistinctPaths());
     }
 
     private static void solvePartTwo() throws IOException {
-        AdventFileReader.readInputAsStringList("2021/11_octopus-energy-level.txt");
+        List<String> rawRoutes = AdventFileReader.readInputAsStringList("2021/12_caves-map.txt");
 
         System.out.println("Part II: ");
     }
