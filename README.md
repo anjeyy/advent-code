@@ -50,6 +50,9 @@ Please have a look yourself, and I encourage you to solve listed puzzles on your
 - Day 12: Passage Pathing
     - https://adventofcode.com/2021/day/12
 
+- Day 13: Transparent Origami
+    - https://adventofcode.com/2021/day/13
+
 ## Year 2020
 
 > https://adventofcode.com/2020/
