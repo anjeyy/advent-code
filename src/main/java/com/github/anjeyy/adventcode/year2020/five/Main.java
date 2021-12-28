@@ -23,7 +23,7 @@ class Main {
 
     private static void solvePartOne() throws IOException {
         int maxSeatId = AdventFileReader
-            .readInputAsStringList("2020/five_boarding-list.txt")
+            .readInputAsStringList("2020/05_boarding-list.txt")
             .stream()
             .map(String::trim)
             .map(SeatParser::from)
@@ -37,7 +37,7 @@ class Main {
 
     private static void solvePartTwo() throws IOException {
         Map<Integer, Seat> seatList = AdventFileReader
-            .readInputAsStringList("2020/five_boarding-list.txt")
+            .readInputAsStringList("2020/05_boarding-list.txt")
             .stream()
             .map(String::trim)
             .map(SeatParser::from)

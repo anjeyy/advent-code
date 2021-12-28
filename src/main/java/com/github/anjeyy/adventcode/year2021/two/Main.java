@@ -19,7 +19,7 @@ class Main {
 
     private static void solvePartOne() throws IOException {
         List<CommandInstruction> commandInstructions = AdventFileReader
-            .readInputAsStringList("2021/2_dive-commands.txt")
+            .readInputAsStringList("2021/02_dive-commands.txt")
             .stream()
             .filter(AdventFileReader.stringIsNotBlank())
             .map(String::trim)
@@ -33,7 +33,7 @@ class Main {
 
     private static void solvePartTwo() throws IOException {
         List<CommandInstruction> commandInstructions = AdventFileReader
-            .readInputAsStringList("2021/2_dive-commands.txt")
+            .readInputAsStringList("2021/02_dive-commands.txt")
             .stream()
             .filter(AdventFileReader.stringIsNotBlank())
             .map(String::trim)

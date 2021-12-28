@@ -17,7 +17,7 @@ class Main {
 
     private static void solvePartOne() throws IOException {
         long validPasswords = AdventFileReader
-            .readInputAsStringList("2020/two_password-list.txt")
+            .readInputAsStringList("2020/02_password-list.txt")
             .stream()
             .filter(AdventFileReader.stringIsNotBlank())
             .map(String::trim)
@@ -30,7 +30,7 @@ class Main {
 
     private static void solvePartTwo() throws IOException {
         long validPasswords = AdventFileReader
-            .readInputAsStringList("2020/two_password-list.txt")
+            .readInputAsStringList("2020/02_password-list.txt")
             .stream()
             .filter(AdventFileReader.stringIsNotBlank())
             .map(String::trim)

@@ -20,7 +20,7 @@ class Main {
 
     private static void solvePartOne() throws IOException {
         List<Instruction> instructions = AdventFileReader
-            .readInputAsStringList("2020/eight_instruction-list.txt")
+            .readInputAsStringList("2020/08_instruction-list.txt")
             .stream()
             .map(String::trim)
             .map(InstructionParser::from)
@@ -33,7 +33,7 @@ class Main {
 
     private static void solvePartTwo() throws IOException {
         List<Instruction> instructions = AdventFileReader
-            .readInputAsStringList("2020/eight_instruction-list.txt")
+            .readInputAsStringList("2020/08_instruction-list.txt")
             .stream()
             .map(String::trim)
             .map(InstructionParser::from)
