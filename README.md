@@ -53,6 +53,9 @@ Please have a look yourself, and I encourage you to solve listed puzzles on your
 - Day 13: Transparent Origami
     - https://adventofcode.com/2021/day/13
 
+- Day 14: Extended Polymerization
+    - https://adventofcode.com/2021/day/14
+
 ## Year 2020
 
 > https://adventofcode.com/2020/
